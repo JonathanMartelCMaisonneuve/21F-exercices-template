@@ -1,9 +1,8 @@
 //1.  Fonction qui retire tous les espaces d'une chaine de caractère passée en paramètre et retourne la nouvelle chaine
 function retireEspaces(chaine)
 {
-    return chaine.split(" ").join("");
-}
 
+}
 
 //2. Fonction qui efface les espaces de fin et de début et retire tous les espaces multiples d’une chaine de caractère passée en paramètre. La fonction retourne la nouvelle chaine (Vous ne pouvez pas utiliser trim()).
 function nettoieEspaces(chaine)
@@ -23,4 +22,4 @@ function inverseLettres(chaine)
 {
 }
 
-module.exports = {retireEspaces, nettoieEspaces, compteMots, inverseMots, inverseLettres};
+export {retireEspaces, nettoieEspaces, compteMots, inverseMots, inverseLettres};
