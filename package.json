@@ -1,52 +1,67 @@
 {
+  "//" : "todo : changer le nom du fichier de rapport; tester le tout avec github education; faire des test; comprendre les tests; enseigner tout ça!",
   "name": "21f-exercices-template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "serve",
-    "test": "jest"
+    "pretest": "ncp ./node_modules/21F-test-unit/chaine-test/ ./__test__/",
+    "test": "jest || exit 0",
+    "posttest": "rimraf __test__"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "21F-test-unit": "github:JonathanMartel/21F-test-unit",
-    "cm523-unit-tests": "github:JonathanMartel/21F-test-unit",
+    "jsdom": "^16.4.0",
     "regenerator-runtime": "^0.13.5"
   },
   "devDependencies": {
+    "21F-test-unit": "github:JonathanMartel/21F-test-unit",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@testing-library/dom": "^7.22.2",
     "@testing-library/jest-dom": "^5.5.0",
-    "babel-jest": "^25.3.0",
-    "21F-test-unit": "github:JonathanMartel/21F-test-unit",
+    "babel-jest": "^26.3.0",
+    "del-cli": "^3.0.1",
     "html-validate": "^3.0.0",
-    "jest": "^25.3.0",
+    "jest": "^26.4.2",
+    "jest-html-reporters": "^2.0.4",
+    "jest-summarizing-reporter": "^1.1.4",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2",
     "serve": "^11.3.0"
   },
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "clearMocks": true,
     "setupFilesAfterEnv": [
       "regenerator-runtime/runtime"
     ],
-    "testPathIgnorePatterns": [],
-    "transformIgnorePatterns": [],
-    "testMatch": [
-      "**/?(*.)+(spec|test).[jt]s?(x)"
+    "reporters": [
+      "jest-summarizing-reporter",
+      "jest-html-reporters"
     ],
-    "haste": {
-      "providesModuleNodeModules": [
-        "21F-test-unit/(?!(chaine-test)/)"
-      ]
-    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(21F-test-unit)/)"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[tj]s?(x)",
+      "**/node_modules/21F-test-unit/**/*.[jt]s?(x)"
+    ],
+    "roots": [
+      "<rootDir>/"
+    ],
     "transform": {
       "\\.js$": [
         "babel-jest",
         {
-          "configFile": "./node_modules/21F-test-unit/babel.config.js"
+          "configFile": "./node_modules/21F-test-unit/babel.config.json"
         }
       ]
     }
