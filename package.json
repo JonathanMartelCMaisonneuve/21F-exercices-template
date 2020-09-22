@@ -9,6 +9,9 @@
     "pretest": "ncp ./node_modules/21F-test-unit/chaine-test/ ./__test__/",
     "test": "jest || exit 0",
     "posttest": "rimraf __test__"
+    "pregrade": "ncp ./node_modules/21F-test-unit/chaine-test/ ./__test__/",
+    "grade" : "jest",
+    "postgrade": "rimraf __test__"
   },
   "keywords": [],
   "author": "",
